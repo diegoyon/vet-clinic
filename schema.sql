@@ -54,14 +54,12 @@ CREATE TABLE vets (
 -- Create a "join table" called specializations
 CREATE TABLE specializations (
     species_id INT REFERENCES species(id),
-    vet_id INT REFERENCES vets(id),
-    CONSTRAINT species_vet_pk PRIMARY KEY (species_id, vet_id)
+    vet_id INT REFERENCES vets(id)
 );
 
 -- Create a "join table" called visits, it should also keep track of the date of the visit.
 CREATE TABLE visits (
     animals_id INT REFERENCES animals(id),
     vet_id INT REFERENCES vets(id),
-    date_of_visit DATE,
-    CONSTRAINT animals_vet_pk PRIMARY KEY (animals_id, vet_id)
+    date_of_visit DATE
 );

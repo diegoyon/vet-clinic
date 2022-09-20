@@ -33,3 +33,16 @@ CREATE TABLE treatments (
     type VARCHAR,
     name VARCHAR
 );
+
+ALTER TABLE medical_histories ADD CONSTRAINT fk_patients FOREIGN KEY(patient_id) REFERENCES patients(id);
+
+ALTER TABLE invoices ADD CONSTRAINT fk_medical_histories FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id);
+
+ALTER TABLE invoices_items ADD CONSTRAINT fk_invoices FOREIGN KEY(invoice_id) REFERENCES invoices(id);
+
+ALTER TABLE invoices_items ADD CONSTRAINT fk_treatments FOREIGN KEY(treatment_id) REFERENCES treatments(id);
+
+CREATE TABLE join_table_medical_histories_treatments (
+    medical_histories_id INT REFERENCES medical_histories(id),
+    treatments_id INT REFERENCES treatments(id)
+);
